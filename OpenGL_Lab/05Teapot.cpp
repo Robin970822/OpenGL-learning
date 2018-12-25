@@ -8,7 +8,7 @@ void init(void)
     GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};   // 镜面反射参数
     GLfloat mat_shininess[] = {50.0};                // 高光指数
     GLfloat light_position[] = {1.0, 1.0, 1.0, 0.0}; // 灯光位置
-    GLfloat white_light[] = {1.0, 1.0, 1.0, 10.0};
+    GLfloat white_light[] = {1.0, 1.0, 1.0, 1.0};
     GLfloat Light_Model_Ambient[] = {0.2, 0.2, 0.2, 1.0}; // 环境光参数
 
     glClearColor(0.0, 0.0, 0.0, 0.0); // 背景色
