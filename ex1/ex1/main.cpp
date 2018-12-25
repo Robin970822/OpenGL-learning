@@ -7,6 +7,9 @@
 
 #define PI 3.1415926
 
+static int day = 0;
+static int width = 640, height = 480;
+
 typedef struct Point3f
 {
 	GLfloat x;
@@ -112,8 +115,6 @@ void myDisplayCircle()
 // 椭球
 void myDisplayOval()
 {
-	int width = 640;
-	int height = 480;
 	float ratio = (float)width / (float)height;
 	// Our shading model--Gouraud (smooth).
 	glShadeModel(GL_SMOOTH);
@@ -129,11 +130,44 @@ void myDisplayOval()
 	glMatrixMode(GL_MODELVIEW);
 	// Move down the z-axis.
 	glTranslatef(0.0, 0.0, -25.0);
-	glRotatef(100.0f, 0, 2, 2);
+	glRotatef(day, 0, 2, 2);
 	
 	drawOval(5, 8, 15, 20);
 
 	glFlush();
+}
+
+void reshape(GLsizei w, GLsizei h)
+{
+	glViewport(0, 0, w, h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(60.0, (GLfloat)w / (GLfloat)h, 1.0, 100.0);
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
+}
+
+void keyboard(unsigned char key, int x, int y)
+{
+	switch (key)
+	{
+	case 'd':
+		day = (day + 10) % 360;
+		glutPostRedisplay();
+		break;
+	case 'a':
+		day = (day - 10) % 360;
+		glutPostRedisplay();
+		break;
+	case 'x':
+	case 'X':
+	case 27:
+		exit(0);
+		break;
+	default:
+		break;
+	}
 }
 
 int main(int argc, char *argv[])
@@ -147,16 +181,20 @@ int main(int argc, char *argv[])
 	glutInitDisplayMode(GLUT_RGB | GLUT_SINGLE);
 
 	glutInitWindowPosition(100, 100);//设置窗口在屏幕中的位置
-	glutInitWindowSize(640, 480);//设置窗口的大小
+	glutInitWindowSize(width, height);//设置窗口的大小
 
 	// glutCreateWindow("圆");
 	// glutDisplayFunc(myDisplayCircle);
 
-	glutCreateWindow("椭球");
-	glutDisplayFunc(myDisplayOval);
-
 	glutCreateWindow("球体");
 	glutDisplayFunc(myDisplayGlobe);
+	glutReshapeFunc(reshape);
+	glutKeyboardFunc(keyboard);
+
+	glutCreateWindow("椭球");
+	glutDisplayFunc(myDisplayOval);
+	// glutReshapeFunc(reshape);
+	glutKeyboardFunc(keyboard);
 
 	glutMainLoop();
 

@@ -12,6 +12,14 @@ Learning code for OpenGL.
 
 
 
+## [ex2](ex2)
+
+简单的椭球体
+
+由于缺少光源导致看着略像二位平面
+
+
+
 ## [OpenGL-learning](OpenGL-learning)
 
 新接口 GLFW+GLAD
