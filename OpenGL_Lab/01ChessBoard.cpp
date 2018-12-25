@@ -11,22 +11,26 @@ void display(void)
     for(int i = -25; i < 25; i++)
     {
         
-        for(int j = -25; i < 25; i++)
+        for(int j = -25; j < 25; j++)
         {
             
-            if (j % 2 == 0) {
-                
+            if (j % 2 == 0) 
+            {     
                 if (i % 2 == 0) {
                     // 按坐标与矩形宽度绘制矩形
                     glRectf(j * d, i * d, (j + 1) * d, (i + 1) * d);
                 }
                 
             }
-            else if((i + 200) % 2 == 1) {
-                glRectf(j * d, i * d, (j + 1) * d, (i + 1) * d);
+            else 
+            {
+                if((i + 200) % 2 == 1)
+                {
+                    glRectf(j * d, i * d, (j + 1) * d, (i + 1) * d);
+                }
+           
             }            
         }
-        
     }
     glFlush();
     

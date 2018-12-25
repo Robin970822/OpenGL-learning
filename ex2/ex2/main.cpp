@@ -7,14 +7,14 @@ static int width = 640, height = 480;
 
 void init(void)
 {
-	glClearColor(1.0, 1.0, 1.0, 0.0);
+	glClearColor(1.0f, 0.0f, 1.0f, 1.0f);
 	glShadeModel(GL_FLAT | GL_SMOOTH);
 }
 
 void display(void)
 {
 	glClear(GL_COLOR_BUFFER_BIT);
-	glColor3f(1.0f, 1.0f, 0.0f);
+	glColor4f(1.0f, 1.0f, 0.0f, 0.9f);
 	glPushMatrix();				 
 	glRotatef((GLfloat)day, 1.0, 1.0, 1.0);
 	glScalef(3.0f, 1.0f, 1.5f);
